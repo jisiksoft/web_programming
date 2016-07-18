@@ -1,0 +1,106 @@
+</br></br>
+<div class="big bold color1" style="text-align:center;">로그인</div>
+</br></br>
+<div style="text-align:center;">지식소프트에 오신 것을 환영합니다.</div>
+</br></br>
+<div style="position:relative;left:100px;width:700px;height:500px;">
+	<div class="textTitle">이 메 일</div>
+	<input class="inputbox" type="text" id="email">
+		<div style="height:20px;clear:left"></div>
+	<div class="textTitle">비밀번호</div>
+	<input class="inputbox" type="password" id="passwd">
+	
+	<div style="height:70px;clear:left"></div>
+	<div id="btnLogin" onclick="runLogin();">로그인</div>
+	<div style="height:40px;clear:left"></div>
+	<div class="color5" id="message">안녕하세요.</div>
+	<div style="height:40px;clear:left"></div>
+	<div style="position:relative;width:200px;float:left;">비밀번호를 잊으셨나요?</div>
+	<div class="btnString" onclick="findPasswd();">비밀번호 찾기</div>
+	<div style="height:10px;clear:left"></div>
+	<div style="position:relative;width:200px;float:left;">아직 회원이 아닌신가요?</div>
+	<div class="btnString" onclick="clickedRegister();">회원가입</div>
+</div>
+
+<script>
+
+$(window).unbind("mousedown");
+
+//-----------------------------------------------------------------
+function runLogin() {
+
+    var param = { email:$("#email").val(), passwd:$("#passwd").val() };
+    var result = doAjax('./data/login/ajax_login.php', param);
+
+    if (result == 0) {
+    	alert("이미 로그인 되었습니다.");
+    	changeLogedin();
+    } else if (result == 1) {
+    	clickedSubMenu('smenu_2_1');
+    	changeLogedin();
+    } else if (result == 2) {
+    	clickedPersonalInfo();
+    	changeLogedin();
+    } else {
+    	alert(result);
+    }
+}
+
+//-----------------------------------------------------------------
+function findPasswd() {
+	
+    var param = { email:$("#email").val() };
+    var result = doAjax('./data/login/ajax_find_password.php', param);
+	
+    if (result == 0) {
+    	alert("이미 로그인 되었습니다.");
+    } else if (result == 1) {
+    	alert("이메일 주소로 임시 비밀번호를 발송하였습니다.\n스팸 메일함에서 지식소프트 메일을 확인하시기 바랍니다.");
+    } else {
+    	alert(result);
+    }
+}
+
+</script>
+
+<style>
+
+.textTitle {
+ 	position:relative;
+ 	width:100px;
+ 	float:left;
+}
+#email {
+ 	position:relative;
+ 	height:21px;
+ 	width:250px;
+	font-size:16px;
+ 	float:left;
+}
+#passwd{
+	position:relative;
+	height:21px;
+	width:250px;
+	font-size:16px;
+	float:left;
+}
+#btnLogin {
+	position:relative;
+	left:200px;
+	width:100px;
+	height:60px;
+	text-align:center;
+	line-height:60px;
+	color:#ffffff;
+	background-color:#1646a7;
+	cursor:pointer;
+}
+.btnString {
+ 	position:relative;
+ 	font-weight:bold;
+ 	color:#4f70ec;
+ 	cursor:pointer;
+ 	float:left;
+}
+
+</style>

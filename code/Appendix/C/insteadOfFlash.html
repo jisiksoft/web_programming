@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Hello JisikSoft</title>
+	<meta charset="utf-8"></meta>
+	<link rel="stylesheet" href="./css/insteadOfFlash.css"></link>
+	<script src="./js/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+	<br>
+	<div id='subject'>Use Video tag instead of Flash</div>
+	<br><br>
+	<div style="position:relative;width:960px;height:540px;">
+		<video id="myVideo" style="width:100%;height:100%;" autoplay muted>
+			<source src="./video/teaCup.m4v" type="video/mp4">
+		</video>
+		
+		<div id="text1">Let's take tea-time with JisikSoft.</div>
+		<div id="text2">JisikSoft is in Seoul, South Korea.</div>
+		
+		<div id="blind"></div>
+		<div id="goto" onclick="location.href='http://jisiksoft.com'">Go to 'jisiksoft.com'</div>
+	</div>
+	<br><br>
+	
+	 <script>
+
+		$(window).bind("mousedown contextmenu", function() {
+			return false;
+		});
+
+		var isFired_1 = false;
+		var isFired_2 = false;
+		var isFired_3 = false;
+		
+		$('#myVideo').on('timeupdate', function() {
+			if (!isFired_1 && $('#myVideo')[0].currentTime > 2) {
+				$('#text1').animate({opacity:1}, 2000);
+				isFired_1 = true;
+			}
+			if (!isFired_2 && $('#myVideo')[0].currentTime > 10) {
+				$('#text1').animate({opacity:0}, 2000);
+				isFired_2 = true;
+			}
+			if (!isFired_3 && $('#myVideo')[0].currentTime > 12) {
+				$('#text2').animate({opacity:1}, 2000);
+				isFired_3 = true;
+			}
+		});
+		
+		$('#myVideo').on('ended', function() {
+			$('#blind').css({'display':'block'});
+			$('#goto').css({'display':'block'});
+		});
+		 
+	 </script>
+	
+</body>
+</html>

@@ -1,0 +1,12 @@
+.expression {
+    font-size:25px;
+    line-height:50px;
+    color:#1aaf54;
+    cursor:pointer;
+}
+.variable {
+    font-size:25px;
+    line-height:50px;
+    color:#1646a7;
+    cursor:pointer;
+}

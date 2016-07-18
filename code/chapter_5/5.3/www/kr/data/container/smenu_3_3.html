@@ -1,0 +1,36 @@
+<div id="cmenu_area">
+	<br> <br>
+	<div class="cmenu" id="canvas_arc"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">Canvas Arc</div>
+	<div class="cmenu" id="jquery_animate"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">jQuery Animate</div>
+	<div class="cmenu" id="slidebar"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">Slide Bar</div>
+	<div class="cmenu" id="png_transparency"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">PNG Transparency</div>
+	<div class="cmenu" id="jquery_resizable"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">jQuery Resizable</div>
+	<div class="cmenu" id="bug_game"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">Bug Game</div>
+</div>
+<div id="container_second"></div>
+<br>
+<br>
+<br>
+
+<script>
+	clickedContainerMenu("canvas_arc");
+	$(window).bind("mousedown", function(){ return false; });
+</script>

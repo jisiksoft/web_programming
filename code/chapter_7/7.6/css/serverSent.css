@@ -1,0 +1,57 @@
+#subject {
+	position: relative;
+	left: 50px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #1646a7;
+}
+#contents {
+	position: relative;
+	left: 50px;
+	color: #4f70ec;
+}
+.textLeft {
+	position: relative;
+	left: 50px;
+	width: 150px;
+	height: 25px;
+	color: #444444;
+	font-size: 20px;
+	float: left;
+}
+.text {
+	position: relative;
+	left: 50px;
+	width: 70px;
+	height: 25px;
+	color: #aaaa33;
+	font-size: 20px;
+	float: left;
+}
+.line1 {
+	position: relative;
+	height: 10px;
+	clear: left;
+}
+.line2 {
+	position: relative;
+	height: 30px;
+	clear: left;
+}
+.button {
+	position: relative;
+	left: 50px;
+	width: 80px;
+	height: 40px;
+	border-radius: 15px;
+	color: #ffffff;
+	font-size: 20px;
+	text-align: center;
+	line-height: 40px;
+	background: #9d2aed;
+	cursor: pointer;
+	float: left;
+}
+.button:hover {
+	background: #9d2aaa;
+}

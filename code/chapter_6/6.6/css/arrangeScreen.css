@@ -1,0 +1,27 @@
+.cell {
+	position:absolute;
+}
+#cell1 {
+	background-color:#3e92f2;
+}
+#cell2 {
+	background-color:#3e92d2;
+}
+#cell3 {
+	background-color:#3e92b2;
+}
+#cell4 {
+	background-color:#3e9292;
+}
+#cell5 {
+	background-color:#3e9272;
+}
+#cell6 {
+	background-color:#3e9252;
+}
+#cell7 {
+	background-color:#3e9232;
+}
+#cell8 {
+	background-color:#3e9212;
+}

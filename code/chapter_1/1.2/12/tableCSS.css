@@ -1,0 +1,38 @@
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    height: 30px;
+    text-align: center;
+    border: 1px solid blue;
+    background-color: #eeeeee;
+}
+#th_1 {
+    width:120px;
+}
+#th_2 {
+    width:90px;
+}
+#th_3 {
+    width:200px;
+}
+.td_3 {
+    text-align: left;
+}
+
+.gray { color: #999999; }
+.red { color: #dd0000; }
+.green { color: #00aa00; }
+.blue { color: #0000aa; }
+.pink { color: #ff0080; }
+.ocher { color: #dd7700; }
+.orange { color: #ffa500; }
+.purple { color: #800080; }
+.under { text-decoration: underline; }
+.arial { font-family: arial; }
+.bold { font-weight: bold; }
+.big { font-size: 24px; }
+.normal { font-size: 17px; }
+.small { font-size: 14px; }
+.line_20 { line-height:2.0em; }
+.pointer { cursor: pointer; }

@@ -1,0 +1,23 @@
+.square {
+    position:fixed;
+    width:100px;
+    height:70px;
+    font-size:30px;
+    color:#ffff00;
+}
+#s1 {
+    top:150px;
+    background-color:#1646a7;
+}
+#s2 {
+    left:200px;
+    background-color:#3868c9;
+}
+#s3 {
+    top:200px;
+    left:300px;
+    background-color:#5a8aeb;
+}
+#s4 {
+    background-color:#7cacfd;
+}

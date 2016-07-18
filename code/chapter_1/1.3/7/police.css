@@ -1,0 +1,18 @@
+.light {
+    position:absolute;
+    font-size:16px;
+    color:#ffffff;
+    background-color:#bbbbbb;
+}
+#light_1 {
+}
+#light_2 {
+    top:120px;
+}
+#light_3 {
+    left:200px;
+}
+#light_4 {
+    top:180px;
+    left:160px;
+}

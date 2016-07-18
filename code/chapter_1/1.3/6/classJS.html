@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Hello JISIKSOFT</title>
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="./classJS.css"></link>
+        <script src="./classJS.js"></script>
+        
+        <script>
+        	var book_1, book_2, book_3;
+        </script>
+    </head>
+    
+    <body>
+    	<div class="area">
+        	<div class="btn_1" onclick="book_1=new Book(this,'2013','Big Number 연산');">Click 1</div>
+        	<div class="btn_2" onclick="if(book_1 != null) { book_1.getBookInfo(this); }">Click 6</div>
+    	</div><br>
+    	<div class="area">
+        	<div class="btn_1" onclick="book_2=new Book(this,'2014','주식 분석 프로그램 만들기');">Click 2</div>
+        	<div class="btn_2" onclick="if(book_2 != null) { book_2.getBookInfo(this); }">Click 5</div>
+    	</div><br>
+    	<div class="area">
+        	<div class="btn_1" onclick="book_3=new Book(this,'2015','OCR 프로그래밍');">Click 3</div>
+        	<div class="btn_2" onclick="if(book_3 != null) { book_3.getBookInfo(this); }">Click 4</div>
+    	</div>
+    </body>
+</html>

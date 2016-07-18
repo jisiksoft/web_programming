@@ -1,0 +1,25 @@
+body {
+	width:1000px;
+	margin:auto;
+ 	font-size: 50px;
+ 	text-align: center;
+ 	line-height: 100px;
+}
+#header {
+    position: relative;
+ 	min-height: 150px;
+ 	color: #ffffff;
+    background-color: #ff3333;
+}
+#container {
+ 	position: relative;
+ 	min-height: 700px;
+ 	color: #000000;
+    background-color: #33ff33;
+}
+#footer {
+    position: relative;
+ 	min-height: 100px;
+ 	color: #ffffff;
+    background-color: #3333ff;
+}

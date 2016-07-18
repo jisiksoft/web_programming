@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Hello JisikSoft</title>
+	<meta charset="utf-8"></meta>
+	<link rel="stylesheet" href="./css/canvas_circle.css"></link>
+	<script src="./js/jquery-2.1.3.min.js"></script>
+	<script src="./js/canvas_circle.js"></script>
+</head>
+<body>
+	<br>
+	<div id='subject'>Canvas of HTML5</div>
+	<br><br>
+	<div id='contents'>Drawing Circles on Canvas.</div>
+	<br><br>
+	<div id="areaCanvas">
+		<canvas id="canvas" width="300" height="300"></canvas>
+	</div>
+	<div id="areaButton">
+		<div class="button btn1" onclick="circle.changeColor('green');">green</div>
+		<div class="button btn2" onclick="circle.changeColor('yellow');">yellow</div>
+		<div class="button btn3" onclick="circle.changeColor('red');">red</div>
+		<div class="lineEmpty""></div>
+		<div class="button btn1" onclick="circle.changeVolume(0);">volume(0)</div>
+		<div class="button btn2" onclick="circle.changeVolume(1);">volume(1)</div>
+		<div class="button btn3" onclick="circle.changeVolume(2);">volume(2)</div>
+		<div class="lineEmpty""></div>
+		<div class="button btn1" onclick="circle.changeSpeed(0);">speed(0)</div>
+		<div class="button btn2" onclick="circle.changeSpeed(1);">speed(1)</div>
+		<div class="button btn3" onclick="circle.changeSpeed(2);">speed(2)</div>
+		<div class="lineEmpty"></div>
+		<div class="button btn1" onclick="circle.decreaseCircle();">-</div>
+		<div class="button btn2" onclick="circle.increaseCircle();">+</div>
+		<div class="lineEmpty"></div>
+		<div class="button btn1" onclick="circle.decreaseInnerCircle();">(-)</div>
+		<div class="button btn2" onclick="circle.increaseInnerCircle();">(+)</div>
+	</div>
+	
+	<script>
+		$(window).bind("mousedown", function() {
+			return false;
+		});
+		var circle = new Circle("canvas");
+	</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<div id="logo_jisiksoft" onclick="clickedSubMenu('smenu_1_1');">
+	<img src="./img/logo_jisiksoft.png">
+</div>
+
+<div id="header_user">
+	<div class="user" id="login" onclick="clickedLogin();">Login</div>
+	<div class="user" id="logout" class="pointer" onclick="clickedLogout();">Logout</div>
+	<div class="user" id="register" onclick="clickedRegister();">Register</div>
+	<div class="user" id="personalinfo" onclick="clickedPersonalInfo();">Personal Info</div>
+	<div class="user" onclick="location.href='http://jisiksoft.com/kr'">한국어</div>
+</div>
+
+<div id="menu_area">
+	<div class="menu" id="menu_1" onmouseover="mouseOverMenu(this.id);"
+		onclick="clickedMenu(this.id);">Home</div>
+	<div class="menu" id="menu_2" onmouseover="mouseOverMenu(this.id);"
+		onclick="clickedMenu(this.id);">Company</div>
+	<div class="menu" id="menu_3" onmouseover="mouseOverMenu(this.id);"
+		onclick="clickedMenu(this.id);">Ing...</div>
+	<div class="menu" id="menu_4" onmouseover="mouseOverMenu(this.id);"
+		onclick="clickedMenu(this.id);">Contact Us</div>
+</div>
+
+<div class="smenu_area" id="smenu_1">
+	<div class="smenu" id="smenu_1_1"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">JisikSoft</div>
+	<div class="smenu" id="smenu_1_2"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Development</div>
+	<div class="smenu" id="smenu_1_3"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Education</div>
+	<div class="smenu" id="smenu_1_4"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Publication</div>
+</div>
+
+<div class="smenu_area" id="smenu_2" style="display: none;">
+	<div class="smenu" id="smenu_2_1"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Introduction</div>
+	<div class="smenu" id="smenu_2_2"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">History</div>
+	<div class="smenu" id="smenu_2_3"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Publication</div>
+	<div class="smenu" id="smenu_2_4"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Education</div>
+	<div class="smenu" id="smenu_2_5"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Copyright</div>
+</div>
+
+<div class="smenu_area" id="smenu_3" style="display: none;">
+	<div class="smenu" id="smenu_3_1"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Prime Number</div>
+	<div class="smenu" id="smenu_3_2"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Announce</div>
+	<div class="smenu" id="smenu_3_3"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Sample Code</div>
+	<div class="smenu" id="smenu_3_4"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Story</div>
+</div>
+
+<div class="smenu_area" id="smenu_4" style="display: none;">
+	<div class="smenu" id="smenu_4_1"
+		onmouseover="mouseOverSubMenu(this.id);"
+		onmouseout="mouseOutSubMenu(this.id);"
+		onclick="clickedSubMenu(this.id);">Map</div>
+</div>
+
+<script>
+
+	if (isLogedin() == 1) {
+		changeLogedin();
+	} else {
+		changeLogedout();
+	}
+
+	//-----------------------------------------------------------------
+	function isLogedin() {
+	  	var result = doAjax('./data/login/ajax_is_login.php');
+	  	return result; //1:login , 0:not login
+	}
+
+	//-----------------------------------------------------------------
+	function clickedLogout() {
+
+		var result = doAjax('./data/login/ajax_logout.php');
+
+		if (result == 1) {
+			changeLogedout();
+			clickedSubMenu('smenu_2_1');
+		}
+	}
+
+	//-----------------------------------------------------------------
+	function clickedLogin() {
+	    var param = { dataId:"login" };
+	    var result = doAjax('./data/ajax_get_data.php', param);
+	    $("#container").empty().html(result);
+	}
+
+	//-----------------------------------------------------------------
+	function clickedRegister() {
+	    var param = { dataId:"register" };
+	    var result = doAjax('./data/ajax_get_data.php', param);
+	    $("#container").empty().html(result);
+	}
+
+	//-----------------------------------------------------------------
+	function clickedPersonalInfo() {
+	  var param = { dataId:"personalinfo" };
+	  var result = doAjax('./data/ajax_get_data.php', param);
+	  $("#container").empty().html(result);
+	}
+
+	//-----------------------------------------------------------------
+	function changeLogedin() {
+	    $("#login").css({
+	        "display": "none"
+	    });
+		$("#logout").css({
+			"display": "block"
+		});
+	    $("#register").css({
+	        "display": "none"
+	    });
+		$("#personalinfo").css({
+			"display": "block"
+		});
+	}
+
+	//-----------------------------------------------------------------
+	function changeLogedout() {
+	    $("#login").css({
+	        "display": "block"
+	    });
+		$("#logout").css({
+			"display": "none"
+		});
+	    $("#register").css({
+	        "display": "block"
+	    });
+		$("#personalinfo").css({
+			"display": "none"
+		});
+	}
+
+</script>

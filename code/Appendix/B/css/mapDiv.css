@@ -1,0 +1,14 @@
+#subject {
+	position: relative;
+	left: 50px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #1646a7;
+}
+#message {
+	position: relative;
+	left: 50px;
+	height: 30px;
+	font-size: 30px;
+	color: #bb3333;
+}

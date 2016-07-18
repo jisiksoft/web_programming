@@ -1,0 +1,17 @@
+#subject {
+	position: relative; 
+	left: 120px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #1646a7;
+}
+#contents {
+	position: relative; 
+	left: 120px;
+	color: #4f70ec;
+}
+#bar1, #bar2, #bar3 {
+	position: relative; 
+	left: 120px;
+	width: 300px;
+}

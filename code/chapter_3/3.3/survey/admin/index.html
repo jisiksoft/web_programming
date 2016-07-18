@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+    <title>아리따움 강일점</title>
+    <meta charset="utf-8"></meta>
+    <link rel="stylesheet" href="./css/admin.css"></link>
+    <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/canvasjs.min.js"></script>
+    <script src="./js/admin.js"></script>
+</head>
+<body>
+  	<br>
+  	<div id="mainTitle"> 아리따움 강일점 설문조사 </div>
+  	<br/><br>
+
+  	<div class="bold left">비밀번호 : &nbsp;</div>
+ 	<input type="text" class="personal" id="passwd" value=""></input>
+ 	<br><br><br><br><br><br>
+            
+  	<div class="btn" id="btn1" onclick="getAllData()">통계 보기</div><br>
+            
+  	<div class="btn" id="btn2" onclick="downloadFile()">파일 저장</div><br>
+            
+	
+  	<div class="bold left">참여 고객수 : &nbsp;</div>
+	<div id="count"> - </div>
+	<br><br><br>
+    
+	<div class="chart" id="chart1"></div>
+    <div>Q1. 귀하의 연령대는 어디에 해당되시나요?</div>
+	<input type="radio" class="select"> 10대 이하</input><br>
+	<input type="radio" class="select"> 20대</input><br>
+	<input type="radio" class="select"> 30대</input><br>
+	<input type="radio" class="select"> 40대</input><br>
+	<input type="radio" class="select"> 50대</input><br>
+	<input type="radio" class="select"> 60대 이상</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart2"></div>
+	<div>Q2. 귀하의 거주 지역은 어디십니까?</div>
+	<input type="radio" class="select"> 강일리버파크</input><br>
+	<input type="radio" class="select"> 고덕리엔파크</input><br>
+	<input type="radio" class="select"> 그외 지역</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart3"></div>
+	<div>Q3. 귀하는 현재 아리따움 강일점에서 주로 어떤 제품을 구매하십니까? (중복선택가능)</div>
+	<input type="checkbox" class="select"> 기초제품</input><br>
+	<input type="checkbox" class="select"> 메이크업 제품</input><br>
+	<input type="checkbox" class="select"> 헤어제품</input><br>
+	<input type="checkbox" class="select"> 바디제품</input><br>
+	<input type="checkbox" class="select"> 네일제품</input><br>
+	<input type="checkbox" class="select"> 향수</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart4"></div>
+	<div>Q4. 나는 제품 구입 시 주로 가는 매장만 가는 편이다.</div>
+	<input type="radio" class="select"> 그렇다</input><br>
+	<input type="radio" class="select"> 근처 가까운데 아무 곳이나 간다.</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart5"></div>
+	<div>Q5. 아모레퍼시픽 제품을 구매할 때 가장 많이 이용하는 곳은 어디인가요?</div>
+	<input type="radio" class="select"> 아리따움 매장</input><br>
+	<input type="radio" class="select"> 홈쇼핑</input><br>
+	<input type="radio" class="select"> 인터넷 쇼핑몰</input><br>
+	<input type="radio" class="select"> 이마트, 롯데마트, 백화점</input><br>
+	<input type="radio" class="select"> 방문판매</input><br>
+	<input type="radio" class="select"> 종합화장품 가게</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart6"></div>
+	<div>Q6. 제품 구매 시 가장 영향을 미치는 요인은 무엇인가요? (중복선택 가능)</div>
+	<input type="checkbox" class="select"> 지인 권유</input><br>
+  	<input type="checkbox" class="select"> 샘플지급</input><br>
+ 	<input type="checkbox" class="select"> 판매사원</input><br>
+  	<input type="checkbox" class="select"> 브랜드 인지도</input><br>
+ 	<input type="checkbox" class="select"> 사용후기</input><br>
+  	<input type="checkbox" class="select"> 사용 경험</input><br>
+  	<input type="checkbox" class="select"> 할인기간(멥버쉽 데이)</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart7"></div>
+	<div>Q7. 기능성 화장품 중에서 구매를 원하거나 선호하는 제품은 무엇인가요?</div>
+  	<input type="radio" class="select"> 미백 화장품</input><br>
+ 	<input type="radio" class="select"> 주름개선 화장품</input><br>
+	<input type="radio" class="select"> 자외선 차단제</input><br>
+ 	<input type="radio" class="select"> 주름+미백 멀티제품</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart8"></div>
+	<div>Q8. 아리따움 강일점 매장의 청결도 만족도는 어느 정도 인가요?</div>
+	<input type="radio" class="select"> 매우 만족</input><br>
+ 	<input type="radio" class="select"> 대체로 만족</input><br>
+   	<input type="radio" class="select"> 보통</input><br>
+  	<input type="radio" class="select"> 불만족</input><br>
+ 	<input type="radio" class="select"> 매우 불만족</input><br><br>
+
+	<div style="clear:left;"></div>
+	<div class="chart" id="chart9"></div>
+  	<div>Q9. 아리따움 강일점 직원의 응대 태도는 어떤가요?</div>
+ 	<input type="radio" class="select"> 매우 만족</input><br>
+ 	<input type="radio" class="select"> 대체로 만족</input><br>
+  	<input type="radio" class="select"> 보통</input><br>
+  	<input type="radio" class="select"> 불만족</input><br>
+  	<input type="radio" class="select"> 매우 불만족</input><br><br>
+
+  	<br><br><br><br><br>
+         
+</div>
+</body>
+</html>
+

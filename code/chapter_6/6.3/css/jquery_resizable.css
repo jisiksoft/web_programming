@@ -1,0 +1,13 @@
+#subject {
+	font-size: 24px;
+	font-weight: bold;
+	color: #1646a7;
+}
+#contents {
+	color: #4f70ec;
+}
+#all_background {
+	position: relative;
+	width: 600px;
+	height: 600px;
+}

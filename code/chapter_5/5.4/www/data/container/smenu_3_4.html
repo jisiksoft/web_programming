@@ -1,0 +1,531 @@
+<br><br>
+<div class="big bold color1">인간은 생각하는 함수다.</div>
+<br>
+우리의 지식이 무엇으로 채워지느냐에 따라서 서로 다른 결과를 내보낸다.<br>
+같은 내용이 입력되어도 우리 모두는 서로 다른 결과를 만드는 독창적인 함수다.<br>
+입력되는 내용에 따라 지식소프트 함수도 자신만의 이야기를 말할 것이다.<br>
+완벽한 진리는 없다. 우리는 각자의 함수를 통해서 현재에서 가장 최선의 선택을 하는 것 뿐이다.<br>
+<br>
+<div class="button buttonArea" id="boardButtonWrite" onclick="showPopupWrite();">Write</div>
+
+<div id="board"></div>
+
+<div id="boardPopupRead">
+	<div class="button" id="hideButton" onclick="hidePopupRead();">X</div>
+	<div id="boardText">
+		<div class="big bold color1" id="textTitle"></div>
+		<br><br>
+		<div id="textContents"></div>
+	</div>
+	<div class="button" id="hideButton" onclick="hidePopupRead();">X</div>
+	<div class="buttonArea" id="boardReadButtonArea">
+		<div class="button btnBoard" id="firstButton" onclick="editArticle();">수정</div>
+		<div class="button btnBoard" id="secondButton" onclick="showAlertToDelete();">삭제</div>
+	</div>
+	<br>
+</div>
+
+<div id="boardPopupWrite">
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제목 : 
+	<input type="text" id="boardWriteTitle">
+	<br>
+	<textarea id="boardWriteContents" rows="35" cols="76"></textarea>
+	<br>
+	<div class="buttonArea" id="boardWriteButtonArea">
+		<div class="button btnBoard" id="firstButton" onclick="saveArticle();">저장</div>
+		<div class="button btnBoard" id="secondButton" onclick="updateArticle();">수정</div>
+		<div class="button btnBoard" id="thirdButton" onclick="cancelArticle();">취소</div>
+	</div>
+	<br>
+</div>
+
+<div id="boardPopupAlert">
+	<div style="height:30px;"></div>	
+	<div id="textAlert" style="position:relative;left:50px;">정말 삭제하시겠습니까?</div>
+	<div style="height:30px;"></div>
+	<div id="boardAlertButtonArea">
+		<div class="button" id="firstButton" onclick="deleteArticle();">예</div>
+		<div class="button" id="secondButton" onclick="hidePopupAlert();">아니오</div>
+	</div>
+	<br>
+</div>
+
+<script>
+	
+	var countInPage = 20;
+	var currArticle = 0;
+	var currPage = 0;
+
+	//--------------------------------------------------------------------------------------------------
+	function setQuotationMark(input) {
+
+		var output;
+		
+		var arrString = input.split('&&&&');
+		output = '';
+		for (var i=0; i<arrString.length; i++) {
+			output += arrString[i];
+			if (i != (arrString.length - 1))
+				output += '"';
+		}
+		arrString = output.split('&&&');
+		output = '';
+		for (var i=0; i<arrString.length; i++) {
+			output += arrString[i];
+			if (i != (arrString.length - 1))
+				output += "'";
+		}
+		
+		return output;
+	}
+	
+	//--------------------------------------------------------------------------------------------------
+	function unsetQuotationMark(input) {
+
+		var output;
+		
+		var arrString = input.split('"');
+		output = '';
+		for (var i=0; i<arrString.length; i++) {
+			output += arrString[i];
+			if (i != (arrString.length - 1))
+				output += '&&&&';
+		}
+		arrString = output.split("'");
+		output = '';
+		for (var i=0; i<arrString.length; i++) {
+			output += arrString[i];
+			if (i != (arrString.length - 1))
+				output += '&&&';
+		}
+		
+		return output;
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function makeBoard(noPage) {
+
+		var param = { board: 'Story', page: noPage };
+		var jsonData = doAjax('./data/board/ajax_get_board.php', param);
+
+		var obj = JSON.parse(jsonData);
+
+		currPage = obj.page;
+		
+		//게시판 테이블을 만든다.
+		var no = obj.count - (obj.page * countInPage);
+		
+		var str = '<div id="boardHead">';
+		str += '<div id="boardHeadColumn1">번호</div> \
+				<div id="boardHeadColumn2">제목</div> \
+				<div id="boardHeadColumn3">날짜</div> \
+				<div id="boardHeadColumn4">조회수</div>';
+		str += '</div>';
+
+		for (var i=0; i<obj.boardPage.length; i++) {
+
+			str += '<div class="boardRow">';
+			str += '<div class="boardColumn1">'+no+'</div> \
+					<div class="boardColumn2" onclick="showArticle('+obj.boardPage[i].id+');"> \
+								&nbsp;&nbsp;'+setQuotationMark(obj.boardPage[i].subject)+'</div> \
+					<div class="boardColumn3">'+obj.boardPage[i].date+'</div> \
+					<div class="boardColumn4">'+obj.boardPage[i].count+'</div>';
+			str += '</div>';
+			
+			no -= 1;
+		}
+		
+		//게시판 아래 부분에 페이지 이동하는 내용 삽입한다.
+		str += '<div style="position:relative;top:10px;left:200px;width:300px;height:30px;">';
+		if (obj.page > 0) {
+			str += '<div class="button2" onclick="makeBoard('+(obj.page - 1)+');"> << </div>';
+		}
+		var startIndex = obj.page - 4;
+		if (startIndex < 0) {
+			startIndex = 0;
+		}
+		var lastIndex = Math.ceil(obj.count / countInPage);
+		var endIndex = obj.page + 5;
+		if (endIndex > lastIndex) {
+			endIndex = lastIndex;
+		}
+		for (var i=startIndex ; i<endIndex; i++) {
+			if (i == obj.page) {
+				str += '<div class="bold black" style="width:20px;float:left;">'+ (i+1) +'</div>';
+			}
+			else {
+				str += '<div class="button2" onclick="makeBoard('+i+');">'+ (i+1) +'</div>';
+			}
+		}
+		if (no > 0) {
+			str += '<div class="button2" onclick="makeBoard('+(obj.page + 1)+');"> >> </div>';
+		}
+		str += '</div><br><br>';
+		
+		$('#board').empty().html(str);
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function showArticle(idArticle) {
+
+		var param = { board: 'Story', id: idArticle };
+		var jsonData = doAjax('./data/board/ajax_get_article.php', param);
+
+		var obj = JSON.parse(jsonData);
+		
+		var text = setQuotationMark(obj.article.subject);
+		$('#textTitle').empty().html(text);
+		
+		text = setQuotationMark(obj.article.contents);
+		$('#textContents').empty().html(text);
+		
+		$('#boardPopupRead').css({"display":"block"});
+		
+		currArticle = idArticle;
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function hidePopupRead() {
+		$('#boardPopupRead').css({"display":"none"});
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function showPopupWrite() {
+		$('#boardWriteTitle').val('');
+		$('#boardWriteContents').val('');
+		$('#boardPopupWrite #firstButton').css({"display":"block"});
+		$('#boardPopupWrite #secondButton').css({"display":"none"});
+		$('#boardPopupWrite').css({"display":"block"});
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function saveArticle() {
+
+		var text = $('#boardWriteTitle').val();
+		var textTitle = unsetQuotationMark(text);
+		
+		text = $('#boardWriteContents').val();
+		var arrString = text.split('\n');
+		text = '';
+		for (var i=0; i<arrString.length; i++) {
+			text += arrString[i];
+			if (i != (arrString.length - 1))
+				text += '<br>';
+		}
+		var textContents = unsetQuotationMark(text);
+		
+		var param = { board: 'Story', title: textTitle, contents: textContents };
+		var result = doAjax('./data/board/ajax_save_article.php', param);
+
+		if (result == 0) {
+			$('#boardWriteTitle').val('');
+			$('#boardWriteContents').val('');
+			$('#boardPopupWrite').css({"display":"none"});
+			
+			makeBoard(0);
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function cancelArticle() {
+		$('#boardPopupWrite').css({"display":"none"});
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function editArticle() {
+		
+		var title = $('#textTitle').html();
+		var text = $('#textContents').html();
+		
+		var arrString = text.split('<br>');
+		text = '';
+		for (var i=0; i<arrString.length; i++) {
+			text += arrString[i];
+			if (i != (arrString.length - 1))
+				text += '\n';
+		}
+		
+		$('#boardWriteTitle').val(title);
+		$('#boardWriteContents').val(text);
+		$('#textTitle').html('');
+		$('#textContents').html('');
+
+		$('#boardPopupRead').css({"display":"none"});
+
+		$('#boardWriteButtonArea #firstButton').css({"display":"none"});
+		$('#boardWriteButtonArea #secondButton').css({"display":"block"});
+		$('#boardPopupWrite').css({"display":"block"});
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function updateArticle() {
+
+		var text = $('#boardWriteTitle').val();
+		var textTitle = unsetQuotationMark(text);
+		
+		text = $('#boardWriteContents').val();
+		var arrString = text.split('\n');
+		text = '';
+		for (var i=0; i<arrString.length; i++) {
+			text += arrString[i];
+			if (i != (arrString.length - 1))
+				text += '<br>';
+		}
+		var textContents = unsetQuotationMark(text);
+		
+		var param = { board: 'Story', id: currArticle, title: textTitle, contents: textContents };
+		var result = doAjax('./data/board/ajax_update_article.php', param);
+
+		if (result == 0) {
+			$('#boardPopupWrite').css({"display":"none"});
+			
+			makeBoard(currPage);
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function showAlertToDelete() {
+		$('#boardPopupAlert').css({
+									"display":"block",
+									"left":($(window).width() / 2) - 30,
+									"top":($(window).height() / 2) - 100
+								});
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function deleteArticle() {
+
+		$('#boardPopupAlert').css({"display":"none"});
+		
+		var param = { board: 'Story', id: currArticle };
+		var result = doAjax('./data/board/ajax_delete_article.php', param);
+		
+		if (result == 0) {
+			$('#boardPopupRead').css({"display":"none"});
+			
+			makeBoard(currPage);
+		}
+	}
+
+	//--------------------------------------------------------------------------------------------------
+	function hidePopupAlert() {
+		$('#boardPopupAlert').css({"display":"none"});
+	}
+	
+	makeBoard(0);
+	
+	if (isLogedin() == 1) {
+		$('.buttonArea').css({"display":"block"});
+		$(window).unbind("mousedown");
+	} else {
+		$('.buttonArea').css({"display":"none"});
+		$(window).bind("mousedown", function(){ return false; });
+	}
+	
+</script>
+
+<style>
+
+#board {
+	position:relative;
+	width:750px;
+	min-height:300px;
+	font-size:13px;
+	text-align:center;
+}
+#boardButtonWrite {
+	position:relative;
+	top:-15px;
+	left:660px;
+}
+#boardPopupRead {
+	position:absolute;
+	top:250px;
+	width:750px;
+	min-height:500px;
+	border:1px solid #1646a7;
+	background-color:#f0f0ff;
+	z-index:100;
+	display:none;
+}
+#boardPopupRead #boardText {
+	position:relative;
+	left:20px;
+	width:680px;
+	min-height:475px;
+}
+#boardPopupRead #hideButton {
+	position:relative;
+	top:15px;
+	left:700px;
+	width:30px;
+	height:21px;
+	line-height:20px;
+}
+#boardPopupRead #boardReadButtonArea {
+	position:relative;
+	top:15px;
+	left:280px;
+	width:200px;
+	height:40px;
+}
+#boardPopupRead #boardReadButtonArea #firstButton {
+	position:relative;
+	float:left;
+}
+#boardPopupRead #boardReadButtonArea #secondButton {
+	position:relative;
+	left:30px;
+	float:left;
+}
+#boardPopupWrite {
+	position:absolute;
+	top:120px;
+	width:750px;
+	min-height:500px;
+	border:1px solid #1646a7;
+	background-color:#f0f0ff;
+	z-index:101;
+	display:none;
+}
+#boardPopupWrite textarea {
+	width: 700px;
+}
+#boardPopupWrite #boardWriteTitle {
+	position:relative;
+	left:10px;
+	width:640px;
+	height:30px;
+	font-size:17px;
+}
+#boardPopupWrite #boardWriteContents {
+	position:relative;
+	top:10px;
+	left:20px;
+	font-size:17px;
+}
+#boardPopupWrite #boardWriteButtonArea {
+	position:relative;
+	top:15px;
+	left:280px;
+	width:200px;
+	height:35px;
+}
+#boardPopupWrite #boardWriteButtonArea #firstButton {
+	position:relative;
+	float:left;
+}
+#boardPopupWrite #boardWriteButtonArea #secondButton {
+	position:relative;
+	float:left;
+	display:none;
+}
+#boardPopupWrite #boardWriteButtonArea #thirdButton {
+	position:relative;
+	left:30px;
+	float:left;
+}
+#boardHead {
+	position:relative;
+	width:748px;
+	height:30px;
+	border:1px solid #1646a7;
+	color:#ffffff;
+	background-color:#4f70ec;
+	clear:left;
+}
+#boardHeadColumn1 {
+	position:relative;
+	width:75px;
+	height:30px;
+	border-right:1px solid #1646a7;
+	float:left;
+}
+#boardHeadColumn2 {
+	position:relative;
+	width:480px;
+	height:30px;
+	border-right:1px solid #1646a7;
+	float:left;
+}
+#boardHeadColumn3 {
+	position:relative;
+	width:120px;
+	height:30px;
+	border-right:1px solid #1646a7;
+	float:left;
+}
+#boardHeadColumn4 {
+	position:relative;
+	width:70px;
+	height:30px;
+	float:left;
+}
+.boardRow {
+	position:relative;
+	width:748px;
+	height:30px;
+	border-left:1px solid #1646a7;
+	border-right:1px solid #1646a7;
+	border-bottom:1px solid #1646a7;
+	clear:left;
+}
+.boardColumn1 {
+	position:relative;
+	width:75px;
+	border-right:1px solid #1646a7;
+	float:left;
+}
+.boardColumn2 {
+	position:relative;
+	width:480px;
+	text-align:left;
+	border-right:1px solid #1646a7;
+	cursor:pointer;
+	float:left;
+}
+.boardColumn3 {
+	position:relative;
+	width:120px;
+	border-right:1px solid #1646a7;
+	float:left;
+}
+.boardColumn4 {
+	position:relative;
+	width:70px;
+	float:left;
+}
+.button2 {
+	width:20px;
+	cursor:pointer;
+	float:left;"
+}
+.button2:hover {
+	font-weight:bold;
+	color:#9d2aed;
+}
+#boardPopupAlert {
+	position:fixed;
+	top:650px;
+	left:500px;
+	width:270px;
+	height:160px;
+	background-color:#aaaaff;
+	z-index:110;
+	display:none;
+}
+#boardPopupAlert #boardAlertButtonArea {
+	position:relative;
+	left:50px;
+}
+#boardPopupAlert #boardAlertButtonArea #firstButton {
+	position:relative;
+	float:left;
+}
+#boardPopupAlert #boardAlertButtonArea #secondButton {
+	position:relative;
+	left:10px;
+	float:left;
+}
+
+</style>

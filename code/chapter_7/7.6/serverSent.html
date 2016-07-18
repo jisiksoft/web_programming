@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Hello JisikSoft</title>
+	<meta charset="utf-8"></meta>
+	<link rel="stylesheet" href="./css/serverSent.css"></link>
+	<script src="./js/jquery-2.1.3.min.js"></script>
+	<script src="./js/serverSent.js"></script>
+</head>
+<body>
+	<br>
+	<div id='subject'>ServerSent Event of HTML5</div>
+	<br><br>
+	<div id='contents'>'ServerSent Event' is good to Update Real-Time Data of a server.</div>
+	<div class='line2'></div>
+	<div class='textLeft'>Server Time :  </div><div class='text' id='text1'>0</div>
+	<div class='line1'></div>
+	<div class='textLeft'>Server CPU :   </div><div class='text' id='text2'>0</div>
+	<div class='line1'></div>
+	<div class='textLeft'>Server Memory :</div><div class='text' id='text3'>0</div>
+	<div class='line2'></div>
+	<div class='button' onclick="startSent('text1', 'text2', 'text3');">Start</div>
+</body>
+</html>

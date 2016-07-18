@@ -1,0 +1,38 @@
+<br><br>
+<div class="big color1">전국의 모든 Cafe는 지식소프트의 회의실입니다.</div>
+<br>
+<div class="big color5">02-743-0367</div>
+<div class="big color5">thankyou@jisiksoft.com</div>
+<br><br>
+<div id="googleMap" style="width:700px;height:500px;"></div>
+<div class="color5">서울 성북구 낙산길 243-15, 101-1004</div>
+<br><br>
+
+<script language=javascript>
+
+	var myCenter=new google.maps.LatLng(37.5815956,127.0129221);
+	
+	var mapProp = {
+	  center:myCenter,
+	  zoom:16,
+	  mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+	
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	
+	var marker=new google.maps.Marker({
+	  position:myCenter,
+	});
+	
+	marker.setMap(map);
+	
+	var infowindow = new google.maps.InfoWindow({
+	  content:"지식소프트는 한성대학교 옆에 있습니다."
+	});
+	
+	infowindow.open(map,marker);
+
+	$(window).bind("mousedown", function(){ return false; });
+	
+</script>
+

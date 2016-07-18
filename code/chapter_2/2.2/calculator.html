@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Hello JISIKSOFT</title>
+        <meta charset="utf-8"></meta>
+        <link rel="stylesheet" href="./css/calculator.css"></link>
+        <script src="./js/calculator.js"></script>
+    </head>
+    
+    <body>
+        <div id="calculator">
+            <div id="board">
+                <div class="row" id="row_1">
+                    <div id="result"> 0 </div>
+                </div>
+                <div class="row">
+                    <div class="square operator2" id="clear" onclick="pressBtn('clear');"> C </div>
+                    <div class="square operator2" id="sign" onclick="pressBtn('sign');"> +/- </div>
+                    <div class="square operator2" id="percent" onclick="pressBtn('percent');"> % </div>
+                    <div class="square operator1" id="divide" onclick="pressBtn('divide');"> / </div>
+                </div>
+                <div class="row">
+                    <div class="square" id="no_7" onclick="pressBtn('7');"> 7 </div>
+                    <div class="square" id="no_8" onclick="pressBtn('8');"> 8 </div>
+                    <div class="square" id="no_9" onclick="pressBtn('9');"> 9 </div>
+                    <div class="square operator1" id="multiply" onclick="pressBtn('multiply');"> x </div>
+                </div>
+                <div class="row">
+                    <div class="square" id="no_4" onclick="pressBtn('4');"> 4 </div>
+                    <div class="square" id="no_5" onclick="pressBtn('5');"> 5 </div>
+                    <div class="square" id="no_6" onclick="pressBtn('6');"> 6 </div>
+                    <div class="square operator1" id="minus" onclick="pressBtn('minus');"> - </div>
+                </div>
+                <div class="row">
+                    <div class="square" id="no_1" onclick="pressBtn('1');"> 1 </div>
+                    <div class="square" id="no_2" onclick="pressBtn('2');"> 2 </div>
+                    <div class="square" id="no_3" onclick="pressBtn('3');"> 3 </div>
+                    <div class="square operator1" id="plus" onclick="pressBtn('plus');"> + </div>
+                </div>
+                <div class="row">
+                    <div class="square" id="no_0" onclick="pressBtn('0');"> 0 </div>
+                    <div class="square" id="point" onclick="pressBtn('.');"> . </div>
+                    <div class="square operator1" id="equal" onclick="pressBtn('equal');"> = </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

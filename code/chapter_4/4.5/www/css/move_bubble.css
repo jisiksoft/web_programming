@@ -1,0 +1,43 @@
+
+.circle {
+    position:fixed;
+    border-radius:50%;
+    pointer-events:none;
+    z-index: 2;
+}
+#circle_1 {
+    background-color:#ff0000;
+}
+#circle_2 {
+    background-color:#00ff00;
+}
+#circle_3 {
+    background-color:#0000ff;
+}
+#circle_4 {
+    background-color:#ffff00;
+}
+#circle_5 {
+    background-color:#ff00ff;
+}
+#circle_6 {
+    background-color:#00ffff;
+}
+#circle_7 {
+    background-color:#ff0000;
+}
+#circle_8 {
+    background-color:#00ff00;
+}
+#circle_9 {
+    background-color:#0000ff;
+}
+#circle_10 {
+    background-color:#ffff00;
+}
+#circle_11 {
+    background-color:#ff00ff;
+}
+#circle_12 {
+    background-color:#00ffff;
+}

@@ -1,0 +1,24 @@
+<div id="cmenu_area">
+	<br> <br>
+	<div class="cmenu" id="cmenu_1"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">이메일 주세요.</div>
+	<div class="cmenu" id="cmenu_2"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">출판 예정</div>
+	<div class="cmenu" id="cmenu_3"
+		onmouseover="mouseOverContainerMenu(this.id);"
+		onmouseout="mouseOutContainerMenu(this.id);"
+		onclick="clickedContainerMenu(this.id);">소프트웨어 진행 중</div>
+</div>
+<div id="container_second"></div>
+<br>
+<br>
+<br>
+
+<script>
+	clickedContainerMenu("cmenu_1");
+	$(window).bind("mousedown", function(){ return false; });
+</script>

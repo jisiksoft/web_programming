@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Hello JisikSoft</title>
+	<meta charset="utf-8"></meta>
+	<link rel="stylesheet" href="./css/mapDiv.css"></link>
+	<script src="./js/jquery-2.1.3.min.js"></script>
+</head>
+<body>
+	<br>
+	<div id='subject'>Use Div instead of Map tag</div>
+	<br><br>
+	<div id='message'></div>
+	<br><br>
+	<div id='picture' style="position:relative;left:50px;width:576px;height:864px;">
+		<img src="./img/nightView.jpg" style="width:100%;">
+		<div style="position:absolute;top:0px;left:0px;width:576px;height:190px;" onclick="showMessage('북한산쪽 하늘');"></div>
+		<div style="position:absolute;top:200px;left:0px;width:350px;height:350px;" onclick="showMessage('낙산 석곽');"></div>
+		<div style="position:absolute;top:200px;left:350px;width:226px;height:200px;" onclick="showMessage('건너편 동네');"></div>
+		<div style="position:absolute;top:400px;left:410px;width:110px;height:120px;" onclick="showMessage('길을 걷는 연인');"></div>
+		<div style="position:absolute;top:520px;left:200px;width:300px;height:344px;" onclick="showMessage('사랑의 낙산길');"></div>
+	</div>
+	<br><br>
+	
+	 <script>
+		
+		$(window).bind("mousedown contextmenu", function() {
+			return false;
+		});
+		
+		function showMessage(msg) {
+		 $('#message').html(msg);
+		}
+		 
+	 </script>
+	
+</body>
+</html>

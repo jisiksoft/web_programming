@@ -1,0 +1,99 @@
+#calculator {
+    position:relative;
+    left:50px;
+    width:227px;
+    height:317px;
+    background-color:#999999;
+}
+#board {
+    position:absolute;
+    top:22px;
+    left:2px;
+    width:223px;
+    height:254px;
+}
+.square {
+    position:relative;
+    width:55px;
+    height:48px;
+    font-size:23px;
+    color:#000000;
+    text-align:center;
+    line-height:55px;
+    background-color:#e0e0e0;
+    float:left;
+}
+.operator1 {
+    color:#ffffff;
+    background-color:#f5923e;
+}
+.operator2 {
+    background-color:#d6d6d6;
+}
+.row {
+    height:49px;
+}
+#result {
+    font-size:50px;
+    color:#ffffff;
+    text-align:right;
+}
+#clear {
+}
+#sign {
+    left:1px;
+}
+#percent {
+    left:2px;
+}
+#divide {
+    left:3px;
+}
+#no_7 {
+}
+#no_8 {
+    left:1px;
+}
+#no_9 {
+    left:2px;
+}
+#multiply {
+    left:3px;
+}
+#no_4 {
+}
+#no_5 {
+    left:1px;
+}
+#no_6 {
+    left:2px;
+}
+#minus {
+    left:3px;
+}
+#no_1 {
+}
+#no_2 {
+    left:1px;
+}
+#no_3 {
+    left:2px;
+}
+#plus {
+    left:3px;
+}
+#no_0 {
+    width:111px;
+}
+#point {
+    left:1px;
+}
+#equal {
+    left:2px;
+}
+
+
+
+
+
+

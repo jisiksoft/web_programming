@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+    <title>JisikSoft</title>
+    <meta charset="utf-8"></meta>
+	<meta name=“keywords” content=“지식소프트, jisiksoft, IT, Programming, Education, Publication”></meta>
+	<meta name=“Description” content=“지식소프트는 대한민국 IT 발전을 위하여 노력합니다.”></meta>
+    <link rel="stylesheet" href="./css/jquery-ui.min.css"></link>
+    <link rel="stylesheet" href="./css/jisiksoft.css"></link>
+    <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/jquery-ui.min.js"></script>
+    <script src="./js/jquery.ui.touch-punch.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="./js/jisiksoft.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <div id="info"></div>
+  	<div id="container"></div>
+    <div id="footer"></div>
+    
+    <script>
+    	$(window).bind("mousedown contextmenu", function() {
+    		return false;
+    	});
+
+    	initialize();
+    	
+    	clickedRegister();
+    </script>
+</body>
+</html>

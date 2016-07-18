@@ -1,0 +1,93 @@
+</br></br>
+<div class="big bold color1" style="text-align:center;">회원가입</div>
+</br></br>
+<div class="color1" style="text-align:center;">이메일은 아이디로 사용됩니다.</div>
+</br></br>
+<div style="position:relative;left:100px;width:700px;height:400px;">
+	<div class="textTitle">이메일</div>
+	<input class="inputbox" type="text" id="email">
+	<div style="height:20px;clear:left"></div>
+	<div class="textTitle">이름</div>
+	<input class="inputbox" type="text" id="name">
+	<div style="height:20px;clear:left"></div>
+	<div class="textTitle">핸드폰번호</div>
+	<input class="inputbox" type="text" id="cell">
+	<div style="height:20px;clear:left"></div>
+	<div class="textTitle">주소</div>
+	<input class="inputbox" type="text" id="addr">
+	
+	<div style="height:50px;clear:left"></div>
+	<div id="btnRegister" onclick="runRegister();">회원가입</div>
+</div>
+
+<script language=javascript>
+
+$(window).unbind("mousedown");
+
+//-----------------------------------------------------------------
+function runRegister() {
+
+    var param = { email:$("#email").val(), name:$("#name").val(), cell:$("#cell").val(), addr:$("#addr").val() };
+    var result = doAjax('../data/login/ajax_register.php', param);
+
+	if (result == 0) {
+		alert("이미 로그인 되었습니다.");
+	} else if (result == 1) {
+		alert("이메일로 임시 비밀번호를 발송하였습니다.\n스팸 메일함에서 지식소프트 메일을 확인하시기 바랍니다.");
+		clickedLogin('login');
+	} else {
+		alert(result);
+	}
+}
+
+</script>
+
+<style>
+
+.textTitle {
+ 	position:relative;
+ 	width:100px;
+ 	color:#888888;
+ 	float:left;
+}
+#email {
+ 	position:relative;
+ 	height:21px;
+ 	width:250px;
+	font-size:16px;
+ 	float:left;
+}
+#name {
+	position:relative;
+	height:21px;
+	width:90px;
+	font-size:16px;
+	float:left;
+}
+#cell {
+	position:relative;
+	height:21px;
+	width:150px;
+	font-size:16px;
+	float:left;
+}
+#addr {
+	position:relative;
+	height:21px;
+	width:550px;
+	font-size:16px;
+	float:left;
+}
+#btnRegister {
+	position:relative;
+	left:200px;
+	width:100px;
+	height:60px;
+	text-align:center;
+	line-height:60px;
+	color:#ffffff;
+	background-color:#1646a7;
+	cursor:pointer;
+}
+
+</style>
